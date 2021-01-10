@@ -15,7 +15,7 @@ public class CustomPointcut extends DynamicMethodMatcherPointcut
     @Override
     public boolean matches(Method method, Class<?> aClass, Object... objects)
     {
-        return true;
+        return method.isAnnotationPresent(HandleException.class);
     }
 
     @Override
@@ -31,14 +31,5 @@ public class CustomPointcut extends DynamicMethodMatcherPointcut
             }
             return false;
         };
-       /* return (classType) -> {
-            String packageName = classType.getPackage().getName();
-            for (String aPackage : property.getPackages())
-            {
-                if (packageName.contains(aPackage))
-                    return true;
-            }
-            return false;
-        };*/
     }
 }
