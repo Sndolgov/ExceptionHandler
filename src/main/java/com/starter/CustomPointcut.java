@@ -21,8 +21,9 @@ public class CustomPointcut extends DynamicMethodMatcherPointcut
     @Override
     public ClassFilter getClassFilter()
     {
-        return (classType) -> {
-            String packageName = classType.getPackage().getName();
+        return clazz ->
+        {
+            String packageName = clazz.getPackage().getName();
             for (String aPackage : property.getPackages())
             {
                 if (packageName.contains(aPackage))
@@ -30,5 +31,14 @@ public class CustomPointcut extends DynamicMethodMatcherPointcut
             }
             return false;
         };
+       /* return (classType) -> {
+            String packageName = classType.getPackage().getName();
+            for (String aPackage : property.getPackages())
+            {
+                if (packageName.contains(aPackage))
+                    return true;
+            }
+            return false;
+        };*/
     }
 }
